@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike Rabayda</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        .dynamic-background {
+            animation: moveBackground 30s linear infinite;
+            background: linear-gradient(0deg, #007CF0, #00DFD8);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: -1;
+        }
+
+        @keyframes moveBackground {
+            0% {background-position: 0% 0%;}
+            50% {background-position: 100% 100%;}
+            100% {background-position: 0% 0%;}
+        }
+
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 0;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .menu-bar a {
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .content {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        p {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+<div class="dynamic-background"></div>
+
+<div class="menu-bar">
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+</div>
+
+<div class="content">
+    <h1>Mike Rabayda</h1>
+    <p>I'm a Software Engineer, and this website is where I showcase some of the projects I've worked on. Welcome to my corner of the internet!</p>
+</div>
+
+</body>
+</html>
+
