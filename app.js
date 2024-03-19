@@ -8,7 +8,7 @@ app.use(express.static('public'));
 
 // Serve your HTML file at the root route
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public','templates', 'index.html'));
+    res.sendFile(path.join(__dirname, 'public','templates', 'index_3d.html'));
 });
 
 // Start the server
