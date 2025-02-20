@@ -16,6 +16,42 @@ h1, p {
     margin: 0;
     padding: 0;
 }
+.menu-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background: #000000; /* Dark background to blend in */
+    text-align: center;
+}
+
+.menu-bar li {
+    display: inline-block; /* Display items in a row */
+}
+
+.menu-bar a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white; /* Light text color for contrast */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+
+
+    font-family: "Overpass Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+}
+
+.menu-bar a:hover {
+    background-color: #555; /* Slightly lighter background on hover */
+}
+.menu-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the menu stays on top of other content */
+}
+
 // <uniquifier>: Use a unique and descriptive class name
 // <weight>: Use a value from 300 to 700
 
@@ -66,4 +102,52 @@ h1, p {
   font-weight: 800;
   font-style: normal;
 }
+body {
+    padding-top: 50px; /* Adjust based on the height of your menu bar */
+}
 
+
+
+
+
+
+#music {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+#top-tracks {
+    list-style: none;
+    padding: 0;
+}
+
+#top-tracks li {
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+    width: 80%;
+    max-width: 500px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#top-tracks img {
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+#login-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+#login-btn:hover {
+    background-color: #1ed760;
+}
