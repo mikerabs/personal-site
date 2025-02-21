@@ -10,6 +10,7 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
+spotifyApi.setRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN);
 
 // Include the necessary Spotify Web API library
 const SpotifyWebApi = require('spotify-web-api-node');
@@ -17,9 +18,23 @@ const SpotifyWebApi = require('spotify-web-api-node');
 const spotifyApi = new SpotifyWebApi({
     clientId: CLIENT_ID,
     clientSecret: CLIENT_SECRET,
-    redirectUri: 'http://localhost:3000/callback'
+    redirectUri: REDIRECT_URI
 });
 
+
+const refreshAccessToken = async () => {
+    try {
+        const data = await spotifyApi.refreshAccessToken();
+        const accessToken = data.body['access_token'];
+        spotifyApi.setAccessToken(accessToken);
+
+        console.log('Access token refreshed:', accessToken);
+        return accessToken;
+    } catch (err) {
+        console.error('Error refreshing access token:', err);
+        throw err;
+    }
+};
 
 
 
@@ -83,6 +98,38 @@ app.get('/music', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'templates', 'music.html'));
 });
 
+app.get('/api/music-data', async (req, res) => {
+    try {
+        if (!spotifyApi.getAccessToken()) {
+            console.log('No access token found. Refreshing...');
+            await refreshAccessToken();
+        }
+
+        // Fetch Top Tracks
+        const topTracksResponse = await spotifyApi.getMyTopTracks({ limit: 10, time_range: 'short_term' });
+        const topTracks = topTracksResponse.body.items.map(track => ({
+            name: track.name,
+            artist: track.artists[0].name,
+            albumArt: track.album.images[1]?.url,
+            spotifyUrl: track.external_urls.spotify,
+        }));
+
+        // Fetch Top Artists
+        const topArtistsResponse = await spotifyApi.getMyTopArtists({ limit: 10, time_range: 'short_term' });
+        const topArtists = topArtistsResponse.body.items.map(artist => ({
+            name: artist.name,
+            image: artist.images[1]?.url,
+            spotifyUrl: artist.external_urls.spotify,
+        }));
+
+        res.json({ topTracks, topArtists });
+    } catch (err) {
+        console.error('Error fetching Spotify data:', err.message);
+        res.status(500).send('Failed to fetch Spotify data.');
+    }
+});
+
+/*
 app.get('/api/music-data', async (req, res) => {
     const timeRange = 'short_term';
 
@@ -150,7 +197,7 @@ app.get('/api/music-data', async (req, res) => {
         console.error('Error fetching Spotify data:', err.message);
         res.status(500).send('Failed to fetch Spotify data.');
     }*/
-});
+//});
 
 
 
