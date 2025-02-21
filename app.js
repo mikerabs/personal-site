@@ -8,7 +8,7 @@ require('dotenv').config();
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
-const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
+const REDIRECT_URI = 'https://mikerabayda.onrender.com/callback';
 
 
 // Include the necessary Spotify Web API library
@@ -58,7 +58,7 @@ app.get('/login', (req, res) => {
     })}`;
     res.redirect(authUrl);*/
     const scopes = ['user-read-private', 'user-read-email', 'user-top-read']; // Add additional scopes as needed
-    const authorizeURL = spotifyApi.createAuthorizeURL(scopes);
+    const authorizeURL = spotifyApi.createAuthorizeURL(scopes, null, true);
     res.redirect(authorizeURL);
 
     
