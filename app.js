@@ -10,7 +10,6 @@ const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REDIRECT_URI = process.env.SPOTIFY_REDIRECT_URI;
 
-spotifyApi.setRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN);
 
 // Include the necessary Spotify Web API library
 const SpotifyWebApi = require('spotify-web-api-node');
@@ -37,6 +36,7 @@ const refreshAccessToken = async () => {
 };
 
 
+spotifyApi.setRefreshToken(process.env.SPOTIFY_REFRESH_TOKEN);
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
