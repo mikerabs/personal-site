@@ -1,11 +1,14 @@
+
+
+/*
 #intro {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: white; /* or any color you prefer */
-    display: none; /* Hide initially */
+    color: white;
+    display: none;
 }
 
 h1, p {
@@ -20,20 +23,20 @@ h1, p {
     list-style: none;
     margin: 0;
     padding: 0;
-    background: #000000; /* Dark background to blend in */
+    background: #000000; 
     text-align: center;
 }
 
 .menu-bar li {
-    display: inline-block; /* Display items in a row */
+    display: inline-block;
 }
 
 .menu-bar a {
     display: inline-block;
     padding: 10px 20px;
     text-decoration: none;
-    color: white; /* Light text color for contrast */
-    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    color: white; 
+    transition: background-color 0.3s; 
 
 
     font-family: "Overpass Mono", monospace;
@@ -43,13 +46,13 @@ h1, p {
 }
 
 .menu-bar a:hover {
-    background-color: #555; /* Slightly lighter background on hover */
+    background-color: #555; 
 }
 .menu-bar {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1000; /* Ensure the menu stays on top of other content */
+    z-index: 1000;
 }
 
 // <uniquifier>: Use a unique and descriptive class name
@@ -103,51 +106,183 @@ h1, p {
   font-style: normal;
 }
 body {
-    padding-top: 50px; /* Adjust based on the height of your menu bar */
+    padding-top: 50px; 
 }
+*/
 
-
-
-
-
-
-#music {
+/* Intro Section */
+#intro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
-    padding: 50px 20px;
+    color: white;
+    display: none; /* Hide initially */
 }
 
-#top-tracks {
-    list-style: none;
+h1, p {
+    font-family: "Overpass Mono", monospace;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0;
     padding: 0;
 }
 
-#top-tracks li {
+/* Menu Bar */
+.menu-bar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* Ensure the menu stays on top */
+    background: #000000; /* Dark background for the nav */
+}
+
+.menu-bar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.menu-bar li {
+    display: inline-block;
+}
+
+.menu-bar a {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s ease;
+    font-family: "Overpass Mono", monospace;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.menu-bar a:hover {
+    background-color: #555;
+}
+
+/* Fonts */
+.mukta-extralight { font-family: "Mukta", sans-serif; font-weight: 200; }
+.mukta-light { font-family: "Mukta", sans-serif; font-weight: 300; }
+.mukta-regular { font-family: "Mukta", sans-serif; font-weight: 400; }
+.mukta-medium { font-family: "Mukta", sans-serif; font-weight: 500; }
+.mukta-semibold { font-family: "Mukta", sans-serif; font-weight: 600; }
+.mukta-bold { font-family: "Mukta", sans-serif; font-weight: 700; }
+.mukta-extrabold { font-family: "Mukta", sans-serif; font-weight: 800; }
+
+/* General Layout */
+body {
+    padding-top: 50px; /* Prevent content from being hidden under nav */
+    margin: 0;
+    color: white;
+    font-family: "Mukta", sans-serif;
+}
+
+canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1; /* Background animation stays behind content */
+}
+
+/* --- Music Page Section --- */
+.music-section {
+    text-align: center;
+    padding: 80px 20px 60px; /* Adjust padding to prevent overlap with nav */
+    background: transparent;
+    position: relative;
+    z-index: 1; /* Ensure content overlays animation */
+}
+
+.music-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.top-tracks, .top-artists {
+    width: 400px;
+    background: rgba(0, 0, 0, 0.7); /* Transparent black background */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.top-tracks h3, .top-artists h3 {
+    font-family: "Overpass Mono", monospace;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #f0f0f0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
     display: flex;
     align-items: center;
-    margin: 10px auto;
-    width: 80%;
-    max-width: 500px;
+    margin: 10px 0;
     padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-#top-tracks img {
-    border-radius: 5px;
+li:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.album-art, .artist-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
     margin-right: 15px;
+    object-fit: cover;
 }
 
-#login-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #1DB954;
+a {
     color: white;
-    border: none;
-    border-radius: 25px;
-    margin-bottom: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
-#login-btn:hover {
-    background-color: #1ed760;
+a:hover {
+    text-decoration: underline;
 }
+
+a div {
+    text-align: left;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .music-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-tracks, .top-artists {
+        width: 90%;
+    }
+
+    .menu-bar a {
+        padding: 8px 15px;
+    }
+}
+
+
+
+

@@ -1,34 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const loginButton = document.getElementById('login-btn');
-    const tracksList = document.getElementById('top-tracks');
+    fetch('/api/music-data')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(({ topTracks, topArtists }) => {
+            const tracksList = document.getElementById('top-tracks-list');
+            const artistsList = document.getElementById('top-artists-list');
 
-    loginButton.addEventListener('click', () => {
-        window.location.href = '/login';
-    });
+            if (!tracksList || !artistsList) {
+                console.error('Could not find the tracks or artists list in the DOM.');
+                return;
+            }
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const accessToken = urlParams.get('access_token');
-
-    if (accessToken) {
-        fetch(`/music?access_token=${accessToken}`)
-            .then(response => response.json())
-            .then(tracks => {
-                tracksList.innerHTML = '';
-
-                tracks.forEach(track => {
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `
-                        <img src="${track.album.images[2].url}" alt="${track.name}" width="50">
-                        <strong>${track.name}</strong> by ${track.artists[0].name}
-                    `;
-                    tracksList.appendChild(listItem);
-                });
-
-                loginButton.style.display = 'none';
-            })
-            .catch(err => {
-                console.error('Error fetching top tracks:', err);
+            topTracks.forEach(track => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <a href="${track.spotifyUrl}" target="_blank">
+                        <img src="${track.albumArt}" alt="${track.name}" class="album-art">
+                        <div><strong>${track.name}</strong> - <em>${track.artist}</em></div>
+                    </a>
+                `;
+                tracksList.appendChild(li);
             });
-    }
+
+            topArtists.forEach(artist => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <a href="${artist.spotifyUrl}" target="_blank">
+                        <img src="${artist.image}" alt="${artist.name}" class="artist-img">
+                        <div><strong>${artist.name}</strong></div>
+                    </a>
+                `;
+                artistsList.appendChild(li);
+            });
+        })
+        .catch(err => {
+            console.error('Error fetching music data:', err);
+        });
 });
 
