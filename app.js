@@ -129,6 +129,10 @@ app.get('/api/music-data', async (req, res) => {
     }
 });
 
+app.get('/projects', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'templates', 'projects.html'));
+});
+
 
 // Start the server
 app.listen(PORT, () => {
