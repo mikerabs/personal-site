@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mike Rabayda - Pitching</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400;500;600;700;800&family=Overpass+Mono:wght@300..700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding-top: 50px; }
+        canvas { display: block; position: fixed; top: 0; left: 0; z-index: -1; }
+        #pitching-content { 
+            text-align: center; 
+            color: white; 
+            margin-top: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            object-position: center 10%;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: block;
+        }
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .stats-box {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            height: 100%;
+        }
+        .player-info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .stats-item {
+            text-align: left;
+            padding: 5px;
+            white-space: nowrap;
+            padding-left: 10px;
+        }
+        .pitch-velocities {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+            height: 100%;
+            justify-content: space-around;
+        }
+        .pitch-velocities .stats-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 20px;
+        }
+        .bio-section {
+            text-align: left;
+            margin: 20px 0;
+            line-height: 1.6;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .honors-list {
+            text-align: left;
+            margin: 20px 0;
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .honors-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .honors-list li {
+            margin: 10px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .honors-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+        .news-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .news-link:hover {
+            background: #2a2a2a;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/build/three.min.js"></script>
+    <script src="/js/animation.js"></script>
+
+    <nav class="menu-bar">
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/music">Music</a></li>
+            <li><a href="/pitching">Pitching</a></li>
+        </ul>
+    </nav>
+
+    <div id="pitching-content">
+        <h1>Mike Rabayda</h1>
+        <img src="/images/Mike_Rabayda.png" alt="Mike Rabayda" class="profile-image">
+        <div class="stats-container">
+            <div class="stats-box">
+                <h2>Player Info</h2>
+                <div class="player-info-grid">
+                    <div class="stats-item">Height: 6-1</div>
+                    <div class="stats-item">Hometown: Richboro, Pa.</div>
+                    <div class="stats-item">High School: Council Rock South</div>
+                    <div class="stats-item">Position: RHP</div>
+                    <div class="stats-item">Major: Computer Science</div>
+                    <div class="stats-item">Minor: Mathematics</div>
+                </div>
+            </div>
+
+            <div class="stats-box">
+                <h2>2024 Season Stats</h2>
+                <div class="stats-grid">
+                    <div class="stats-item">APP: 11</div>
+                    <div class="stats-item">GS: 11</div>
+                    <div class="stats-item">W: 7</div>
+                    <div class="stats-item">L: 2</div>
+                    <div class="stats-item">SV: 0</div>
+                    <div class="stats-item">IP: 66.0</div>
+                    <div class="stats-item">ERA: 3.41</div>
+                    <div class="stats-item">K: 79</div>
+                </div>
+            </div>
+
+            <div class="stats-box">
+                <h2>Pitch Velocities</h2>
+                <div class="pitch-velocities">
+                    <div class="stats-item">Fastball: 90-94mph</div>
+                    <div class="stats-item">Sinker: 89-91mph</div>
+                    <div class="stats-item">Slider: 81mph</div>
+                    <div class="stats-item">Changeup: 85mph</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bio-section">
+            <h2>2024 Season Highlights</h2>
+            <p>Rawlings/ABCA All-Region 5 Second team… Centennial Conference Pitcher of the Year… First-team All-Centennial Conference… Academic All-Centennial Team… Centennial Conference Spring Academic Honor Roll… Centennial Conference Pitcher of the Week (2/27), (3/12), (4/9)... Team Captain... Appeared and started in 11 games for the Fords in his senior season… Posted a 7-2 record with a 3.41 ERA…. Struck out 79 batters over 66 total innings of work… Led the Centennial Conference in wins with seven… Led the Centennial Conference in strikeouts with 79… Recorded double-digit strikeouts in three different games this season… Struck out 11 batters against Skidmore (3/10) and #15 Johns Hopkins (3/30)... Struck out a season-high 12 batters vs. Dickinson (4/6)... Tossed five scoreless frames with seven strikeouts to earn the win in season debut against Gwynedd Mercy (2/24)... Tossed 6.2 innings with 11 strikeouts to earn the win against Skidmore (3/10)... Threw six innings, striking out 12 to pick up the victory against Dickinson (4/6).</p>
+        </div>
+
+        <div class="honors-list">
+            <h2>Career Honors</h2>
+            <ul>
+                <li>Centennial Conference Pitcher of the Year (2024)</li>
+                <li>First-team All-Centennial Conference (2024)</li>
+                <li>Academic All-Centennial Team (2024)</li>
+                <li>Rawlings/ABCA All-Region 5 Third team (2022)</li>
+                <li>Rawlings/ABCA All-Region 5 Second team (2024)</li>
+                <li>Second-team All-Centennial Conference (2022)</li>
+                <li>PhillySIDA Academic All-Area (2024)</li>
+                <li>Centennial Conference Pitcher of the Week (Apr. 12, 2022; February 27, 2024; March 12, 2024; April 9, 2024)</li>
+                <li>Centennial Conference Spring Academic Honor Roll (2022, 23, 24)</li>
+            </ul>
+        </div>
+
+        <a href="https://www.haverfordathletics.com/sports/bsb/2023-24/bios/rabayda_mike_v2r6?view=news" class="news-link" target="_blank">
+            View All News Articles
+        </a>
+    </div>
+</body>
+</html> 

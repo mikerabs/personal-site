@@ -133,6 +133,9 @@ app.get('/projects', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'templates', 'projects.html'));
 });
 
+app.get('/pitching', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'templates', 'pitching.html'));
+});
 
 // Start the server
 app.listen(PORT, () => {
